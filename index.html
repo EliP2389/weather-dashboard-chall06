@@ -14,27 +14,58 @@
 
 <body>
     <header>
-        <div>
+        <div class="d-flex justify-content-center">
             <h1>Weather Dashboard</h1>
         </div>
     </header>
 
     <main>
+        <!-- page container -->
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 ">
+                <!-- search bar to the left -->
+                <div class="col-lg-3 bg-light">
                     <h2>Search for a City:</h2>
+                    <div class="mb-3">
+                        <input type="text" id="citysearch" class="citysearch">
+                        <div>
+                            <button type="submit" class="btn btn-primary" id="citybtn">Search</button>
+                        </div>
+                        <!-- search history -->
+                        <div id="cityhistory" class="cityhistory">
+                        </div>
+                        <!-- end search history -->
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <input type="text" id="citysearch" class="citysearch">
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-primary" id="citybtn">Search</button>
-                </div>
-                <div id="cityhistory" class="cityhistory">
+                <!-- end of search bar -->
+                <div class="col-lg-9 bg-light">
+                    <!-- current weather -->
+                    <div class="row mr-0">
+                        <div id="current-weather" class="col-lg-11 card m-3 bg-light">
+                            <div class="card-body">
+                                <h1 id="city-name"></h1>
+                                <p id="temp" class="fs-5"></p>
+                                <p id="wind" class="fs-5"></p>
+                                <p id="humidity" class="fs-5"></p>
+                                <p id="uv-index" class="fs-5"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 5 day forcast -->
+                    <div class="row" id="fiveday-forcast">
+                        <div class="col-12">
+                            <h3>5-Day Forcast:</h3>
+                        </div>
+                        <div class="row">
+                            <div class="forcast col-md-2  text-white m-1" id="forcast">boom</div>
+                            <div class="forcast col-md-2  text-white m-1" id="forcast">hey</div>
+                            <div class="forcast col-md-2  text-white m-1" id="forcast"></div>
+                            <div class="forcast col-md-2  text-white m-1" id="forcast"></div>
+                            <div class="forcast col-md-2  text-white m-1" id="forcast"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
 
 </body>
