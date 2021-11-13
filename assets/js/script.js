@@ -2,8 +2,13 @@ var citySearchEl = document.querySelector("#citysearch");
 var weatherEl = document.querySelector("#current-weather");
 var fiveDayEl = document.querySelector("fiveday-forcast");
 
-var apiKey = "";
+function day() {
+    $("#currentDay").text(moment().format("MMMM Do, YYYY - hh:mm:ss a"))
 
-var weatherToday = function(){
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={4e7c7b8b1310e93443a71c3595bacafe}"
-}
+    setInterval(function () {
+        $("#currentDay").each(function () {
+            day($(this));
+        });
+    }, 1000);
+}; day();
+
