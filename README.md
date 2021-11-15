@@ -13,7 +13,7 @@ Display Current Weather and Five Day Forecast
 <img src="./assets/images/forecast-img.png">
 
 ## Sites Used For Reference
-https://www.w3schools.com/default.asp
+https://www.w3schools.com/default.asp <br>
 https://developer.mozilla.org/en-US/
 
 ## Website
