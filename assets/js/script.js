@@ -1,7 +1,7 @@
 var citySearchEl = document.querySelector("#citysearch");
 var weatherEl = document.querySelector("#current-weather");
 var fiveDayEl = document.querySelector("fiveday-forcast");
-
+var cityHistoryEl = document.querySelector("cityhistory");
 
 // let lat = "data.coord.lat"
 // let lon = "data.coord.lat"
@@ -27,7 +27,7 @@ var currentCity = function () {
                 // gets the 5 day weather forcast for that city
                 fiveWeather()
                 saveCity()
-                loadHistory()
+                
                 
                 
 
@@ -118,18 +118,14 @@ var displayFiveDay = function (data) {
     }
 }
 
-function saveCity(city){
-    searchHistory.push(city)
-    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+function saveCity(){
+    
+    localStorage.setItem("citysearch", JSON.stringify(citySearchEl.value));
+
 }
 
-function loadHistory() {
-    var history = localStorage.getItem("searchHistory");
-    history = JSON.parse(history);
-    for(i in history){
-        searchHistory.push(history[i]);
-    }
-  };
+
+
 
   
 // function loadHistory() {
