@@ -1,7 +1,8 @@
 var citySearchEl = document.querySelector("#citysearch");
 var weatherEl = document.querySelector("#current-weather");
 var fiveDayEl = document.querySelector("fiveday-forcast");
-var cityHistoryEl = document.querySelector("cityhistory");
+
+
 
 // let lat = "data.coord.lat"
 // let lon = "data.coord.lat"
@@ -26,10 +27,13 @@ var currentCity = function () {
                 displayWeather(data);
                 // gets the 5 day weather forcast for that city
                 fiveWeather()
-                saveCity()
-                
-                
-                
+                // saveCity()
+                displayCityHistory()
+                // getItem()
+
+
+
+
 
 
                 let apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&units=imperial&appid=" + apiKey;
@@ -39,16 +43,12 @@ var currentCity = function () {
                         response.json().then(function (data) {
                             console.log(data);
                             //  displayWeather(data);
-                            
 
-                            var searchedCity = $("#citysearch").val();
-                            saveCity(searchedCity);
-                            
+
 
                         })
                     }
                 })
-
             })
         }
     })
@@ -57,25 +57,30 @@ var currentCity = function () {
 
 
 
+
+
 // activates the search button
-document.getElementById("citybtn").addEventListener("click", currentCity);
+
 
 // displays the current weather for that specific day
 var displayWeather = function (data) {
     var cityNameEl = document.querySelector("#city-name");
     cityNameEl.textContent = data.name;
     // var iconEl = document.querySelector("#icon");
-    $("#icon").attr("src", `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`).attr("alt", data.weather[0].main);
+    $("#icon").attr("src", `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
     var tempEl = document.querySelector("#temp");
-    tempEl.textContent = " temp: " + data.main.temp + " F ";
+    tempEl.textContent = " Temp: " + data.main.temp + " F ";
     var windEl = document.querySelector("#wind");
-    windEl.textContent = " wind: " + data.wind.speed;
+    windEl.textContent = " Wind: " + data.wind.speed;
     var humidityEl = document.querySelector("#humidity");
-    humidityEl.textContent = " humidity: " + data.main.humidity
-    // var uvIndexEl = document.querySelector("#uv-index");
-    // uvIndexEl.textContent = " UV-Index " + data.current.uvi
-    // console.log(data.current.uvi)
+    humidityEl.textContent = " Humidity: " + data.main.humidity
+    // var uviEl = document.querySelector("#uv-index");
+    // uviEl.textContent = " Uv: " + data.current.uvi
 }
+
+
+
+
 
 
 
@@ -104,7 +109,7 @@ var displayFiveDay = function (data) {
         forecastEl.append(dayTime);
 
         var icon = document.createElement("img");
-        icon.setAttribute("src", `http://openweathermap.org/img/wn/` + data.list[7 +(i * 8)].weather[0].icon + `@2x.png`)
+        icon.setAttribute("src", `http://openweathermap.org/img/wn/` + data.list[7 + (i * 8)].weather[0].icon + `@2x.png`)
         forecastEl.append(icon);
 
         var tempEl = document.createElement("p");
@@ -118,16 +123,49 @@ var displayFiveDay = function (data) {
     }
 }
 
-function saveCity(){
+// function saveCity() {
     
-    localStorage.setItem("citysearch", JSON.stringify(citySearchEl.value));
+//         localStorage.setItem("citysearch", JSON.stringify(citySearchEl.value));
 
-}
-
-
+// };
 
 
-  
+function displayCityHistory(){
+
+     localStorage.setItem("citysearch",JSON.stringify(citySearchEl.value));
+    // var citySaved = document.getElementById("cityhistory")
+
+    // var boom= document.createElement("input");
+    // boom.setAttribute("type", "text")
+    // boom.setAttribute("id", "heyy")
+    // citySaved.append(boom)
+    
+   var name2 = document.getElementById("cityhistory")
+   name2.value = localStorage.getItem("citysearch")
+    
+   for (let index = 0; index < array.length; index++) {
+       
+       
+   }
+
+
+
+} 
+
+// function getItem(){
+//     // for (let i = 0; i < localStorage.length; i++) {
+       
+        
+
+//     }
+
+
+
+
+document.getElementById("citybtn").addEventListener("click", currentCity);
+
+
+
 // function loadHistory() {
 //     var history = localStorage.getItem("citySearchEl");
 //   history = JSON.parse(history);
