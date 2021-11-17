@@ -9,7 +9,7 @@ var fiveDayEl = document.querySelector("fiveday-forcast");
 
 // let lat = ""
 // let lon = ""
-var searchHistory = [];
+// var searchHistory = [];
 
 var apiKey = "cdb53ea06b8d4e2775f8db6d2e437399";
 
@@ -124,38 +124,25 @@ var displayFiveDay = function (data) {
 }
 
 // function saveCity() {
-    
+
 //         localStorage.setItem("citysearch", JSON.stringify(citySearchEl.value));
 
 // };
 
 
-function displayCityHistory(){
+function displayCityHistory() {
 
-     localStorage.setItem("citysearch",JSON.stringify(citySearchEl.value));
-    // var citySaved = document.getElementById("cityhistory")
+    localStorage.setItem("citysearch", JSON.stringify(citySearchEl.value));
 
-    // var boom= document.createElement("input");
-    // boom.setAttribute("type", "text")
-    // boom.setAttribute("id", "heyy")
-    // citySaved.append(boom)
-    
-   var name2 = document.getElementById("cityhistory")
-   name2.value = localStorage.getItem("citysearch")
-    
-   for (let index = 0; index < array.length; index++) {
-       
-       
-   }
+    var history = document.getElementById("cityhistory")
+    history.value = localStorage.getItem("citysearch")
 
-
-
-} 
+}
 
 // function getItem(){
 //     // for (let i = 0; i < localStorage.length; i++) {
-       
-        
+
+
 
 //     }
 
