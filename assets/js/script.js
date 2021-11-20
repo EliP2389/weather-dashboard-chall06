@@ -4,18 +4,27 @@ var fiveDayEl = document.querySelector("fiveday-forcast");
 
 
 
+
 // let lat = "data.coord.lat"
 // let lon = "data.coord.lat"
 
 // let lat = ""
 // let lon = ""
-// var searchHistory = [];
+var searchHistory = [];
+var targetCity = ""
 
 var apiKey = "cdb53ea06b8d4e2775f8db6d2e437399";
 
-var currentCity = function () {
+var currentCity = function (event) {
+    console.log(event)
+    if (event.target.id == "citybtn") {
+        targetCity = citySearchEl.value
+        saveCity()
+    } else {
+        targetCity = event.target.textContent
+    }
     // use the input's "ID" from your html along with the API in order to search a specific city
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=` + citySearchEl.value + `&units=imperial&appid=` + apiKey;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=` + targetCity + `&units=imperial&appid=` + apiKey;
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -123,22 +132,32 @@ var displayFiveDay = function (data) {
     }
 }
 
-// function saveCity() {
 
-//         localStorage.setItem("citysearch", JSON.stringify(citySearchEl.value));
 
-// };
+function saveCity() {
+    searchHistory.push(targetCity)
+    localStorage.setItem("citysearch", JSON.stringify(searchHistory));
+
+};
 
 
 function displayCityHistory() {
+    searchHistory = JSON.parse(localStorage.getItem("citysearch")) || [];
 
-    localStorage.setItem("citysearch", JSON.stringify(citySearchEl.value));
 
     var history = document.getElementById("cityhistory")
-    history.value = localStorage.getItem("citysearch")
+    history.innerHTML = "";
+    // history.value = localStorage.getItem("citysearch")
+    console.log(searchHistory);
+    for (let index = 0; index < searchHistory.length; index++) {
+        var cityBtn = document.createElement("button")
+        cityBtn.textContent = searchHistory[index]
+        cityBtn.addEventListener("click", currentCity)
+        history.append(cityBtn)
 
+    }
 }
-
+displayCityHistory()
 // function getItem(){
 //     // for (let i = 0; i < localStorage.length; i++) {
 
